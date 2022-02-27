@@ -8,6 +8,7 @@
       <dialog-rank />
     </div>
     <vue3-video-play
+      id="vi"
       v-bind="options"
       @play="isplaying"
       @pause="pause"
@@ -27,10 +28,12 @@ import { ElMessage } from "element-plus";
 
 const keyword = ref("");
 const src = ref("");
+const isLoaded = ref(false);
 
 const play = (id: number) => {
   getUrl(id).then((url) => {
     src.value = url;
+    isLoaded.value = true;
     ElMessage({
       message: "音乐已经成功装载！",
       type: "success",
@@ -49,15 +52,41 @@ const auPlayer = (): HTMLAudioElement => {
   return document.getElementById("au") as HTMLAudioElement;
 };
 
+const vPlayer = (): HTMLVideoElement => {
+  return document.getElementById("vi") as HTMLVideoElement;
+};
+
 const isplaying = () => {
-  auPlayer().play();
+  const time = vPlayer().currentTime;
+  if (time > 135) {
+    vPlayer().muted = true;
+    auPlayer().play();
+  }
+  if (!isLoaded.value) {
+    ElMessage({
+      message: "注意！没有替换bgm！会播放官方bgm版本",
+      type: "warning",
+    });
+  }
 };
 
 const pause = () => {
   auPlayer().pause();
 };
 
-const updateDuration = () => {};
+const updateDuration = () => {
+  const time = vPlayer().currentTime;
+  if (time > 135) {
+    console.log(time);
+    console.log(auPlayer().src);
+    if (isLoaded.value) {
+      vPlayer().muted = true;
+      auPlayer().play();
+    }
+  } else {
+    pause();
+  }
+};
 </script>
 
 <style lang="scss">
