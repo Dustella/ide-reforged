@@ -12,14 +12,6 @@
   </el-row>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "main-container",
-});
-</script>
-
 <style lang="scss">
 .content {
   margin-top: 5vh;

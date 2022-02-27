@@ -1,46 +1,42 @@
 <template>
   <el-button type="primary" @click="openSearch = true">开始</el-button>
   <el-dialog v-model="openSearch">
-    <el-card v-for="i in 4" :key="i.toString">
-      <el-image alt="专辑图" />
-      {{ i }}
-
-      <el-descriptions :title="i">
-        <el-descriptions-item label="Username"
-          >kooriookami</el-descriptions-item
-        >
-        <el-descriptions-item label="Telephone"
-          >18100000000</el-descriptions-item
-        >
-        <el-descriptions-item label="Place">Suzhou</el-descriptions-item>
+    <el-card v-for="i of res" :key="i.Name" class="m-card">
+      <el-image :src="i.alSrc" alt="专辑图" />
+      <el-descriptions :title="i.Name" border>
+        <el-descriptions-item label="专辑">{{ i.alName }}</el-descriptions-item>
+        <el-descriptions-item label="歌手">{{ i.arName }}</el-descriptions-item>
       </el-descriptions>
     </el-card>
   </el-dialog>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { ref, defineProps, watchEffect } from "vue";
+import querySearch from "../apis/querySearch";
+import { Music } from "../apis/MusicBuilder";
 
-export default defineComponent({
-  name: "dialogSearch",
-  props: { keyword: String },
-  data() {
-    return {
-      openSearch: true,
-      resultIds: [] as number[],
-      i: [],
-    };
-  },
-  methods: {
-    // getDetails(ids: number[]): music {
-    //   axios.get(`https://api2.163.dustella.net/song/detail?ids=`);
-    // },
-  },
-  mounted() {
-    console.log("");
-  },
+const props = defineProps({
+  keyword: String,
+});
+
+let res = ref([] as Music[]);
+const openSearch = ref(true);
+watchEffect(() => {
+  querySearch(props.keyword).then((result) => (res.value = result));
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.m-card {
+  height: 10vh;
+  & .el-image {
+    height: 100%;
+    width: 6vh;
+  }
+}
+:deep(.el-card__body) {
+  display: flex;
+  flex-direction: row;
+}
 </style>

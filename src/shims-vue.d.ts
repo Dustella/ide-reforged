@@ -5,4 +5,4 @@ declare module '*.vue' {
   export default component
 }
 declare module 'vue3-video-play'
-declare module '@/apis'
+declare module 'querySearch'
