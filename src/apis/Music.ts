@@ -1,9 +1,7 @@
-export default class Music {
-  constructor(
-    public readonly Name: string,
-    public readonly Id: number,
-    public readonly alName: string,
-    public readonly arName: string,
-    public readonly alSrc: string
-  ) {}
+export interface Music {
+  name: string;
+  id: number;
+  artist: string;
+  album: string;
+  picUrl: string;
 }

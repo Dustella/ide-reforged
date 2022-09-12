@@ -3,19 +3,19 @@
   <el-button type="success" @click="rank">排行榜</el-button>
   <el-dialog v-model="openSearch">
     <el-scrollbar height="60vh">
-      <el-card v-for="i of res" :key="i.Name" class="m-card">
-        {{ i.Name }}
-        <el-image :src="i.alSrc" alt="专辑图" />
-        <el-descriptions :title="i.Name" style="width: 600px">
-          <el-descriptions-item label="专辑">{{
-            i.alName
-          }}</el-descriptions-item>
-          <el-descriptions-item label="歌手">{{
-            i.arName
-          }}</el-descriptions-item>
+      <el-card
+        v-for="{ name, album, artist, id, picUrl } of res"
+        :key="id"
+        class="m-card"
+      >
+        {{ name }}
+        <el-image :src="picUrl" alt="专辑图" />
+        <el-descriptions :title="name" style="width: 600px">
+          <el-descriptions-item label="专辑">{{ album }}</el-descriptions-item>
+          <el-descriptions-item label="歌手">{{ artist }}</el-descriptions-item>
         </el-descriptions>
         <div style="width: 100%">
-          <el-button type="primary" @click="play(i.Id)">播放</el-button>
+          <el-button type="primary" @click="play(id)">播放</el-button>
         </div>
       </el-card>
     </el-scrollbar>
@@ -24,13 +24,12 @@
 
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits, watchEffect } from "vue";
-import querySearch from "../apis/querySearch";
-import Music from "../apis/Music";
-import getRank from "../apis/getRank";
+import { searchMusic } from "../apis/querySearch";
+import { Music } from "../apis/Music";
 import { ElMessage } from "element-plus";
 
 const props = defineProps({
-  keyword: String,
+  keyword: { type: String, required: true },
 });
 
 const emit = defineEmits(["onModifyBgm"]);
@@ -53,17 +52,9 @@ const search = () => {
 const rank = () => {
   openSearch.value = true;
   openRank.value = true;
-  getRank().then((res) => {
-    console.log(res);
-  });
 };
-watchEffect(() => {
-  if (props.keyword != "") {
-    querySearch(props.keyword).then((result) => {
-      console.log(result);
-      res.value = result;
-    });
-  }
+watchEffect(async () => {
+  props.keyword && (res.value = await searchMusic(props.keyword));
 });
 
 const play = (id: number) => {
