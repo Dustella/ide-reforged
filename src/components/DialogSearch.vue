@@ -25,7 +25,7 @@
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits, watchEffect } from "vue";
 import { searchMusic } from "../apis/querySearch";
-import { Music } from "../apis/Music";
+import { Music } from "../apis/type";
 import { ElMessage } from "element-plus";
 
 const props = defineProps({
@@ -38,9 +38,10 @@ let res = ref([] as Music[]);
 const openSearch = ref(false);
 const openRank = ref(false);
 
-const search = () => {
+const search = async () => {
   if (props.keyword != "") {
     openSearch.value = true;
+    res.value = await searchMusic(props.keyword)
   } else {
     ElMessage({
       message: "请输入需要搜索的音乐",
@@ -53,9 +54,6 @@ const rank = () => {
   openSearch.value = true;
   openRank.value = true;
 };
-watchEffect(async () => {
-  props.keyword && (res.value = await searchMusic(props.keyword));
-});
 
 const play = (id: number) => {
   emit("onModifyBgm", id);

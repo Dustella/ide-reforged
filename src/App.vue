@@ -1,6 +1,7 @@
 <template>
   <main-container>
     <h1 style="text-align: center">IDE Reforged</h1>
+    <h3>新版正在重做 敬请期待 --特菈Dustella</h3>
     <!-- todo: There should be a better logo-->
     <div class="row">
       <el-input v-model="keyword" placeholder="输入搜索的音乐" />
@@ -20,8 +21,8 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import MainContainer from "./components/container.vue";
-import dialogSearch from "./components/dialogSR.vue";
+import MainContainer from "./components/MainContainer.vue";
+import DialogSearch from "./components/DialogSearch.vue";
 import getUrl from "./apis/getUrl";
 import { ElMessage } from "element-plus";
 

@@ -7,8 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Container: typeof import('./src/components/container.vue')['default']
-    DialogSR: typeof import('./src/components/dialogSR.vue')['default']
+    DialogRank: typeof import('./src/components/DialogRank.vue')['default']
+    DialogSearch: typeof import('./src/components/DialogSearch.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']
@@ -19,5 +19,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    MainContainer: typeof import('./src/components/MainContainer.vue')['default']
+    VideoSpace: typeof import('./src/components/VideoSpace.vue')['default']
   }
 }
