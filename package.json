@@ -5,14 +5,23 @@
   "license": "AGPL-3.0",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build"
+    "build": "vite build",
+    "lint": "eslint src/**/*.{js,ts,vue}  --fix",
+    "lint:css": "stylelint src/**/*.{html,vue,css,sass,scss} --fix"
   },
   "dependencies": {
+    "@antfu/eslint-config": "^0.26.3",
     "@types/lodash-es": "*",
     "@vitejs/plugin-vue": "^3.1.0",
     "@volar/vue-language-service": "^0.40.13",
     "axios": "^0.27.2",
     "element-plus": "^2.2.16",
+    "postcss": "^8.3.3",
+    "postcss-html": ">=1.0.0 <2.0.0",
+    "stylelint": "^14.11.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
     "unplugin-auto-import": "^0.11.2",
     "unplugin-vue-components": "^0.22.7",
     "vite": "^3.1.0",

@@ -4,7 +4,7 @@
     <el-col :span="12" :xs="24">
       <el-card>
         <div class="content">
-          <slot> </slot>
+          <slot />
         </div>
       </el-card>
     </el-col>
@@ -15,6 +15,7 @@
 <style lang="scss">
 .content {
   margin-top: 5vh;
+
   & > * {
     margin: 2vh auto;
   }
