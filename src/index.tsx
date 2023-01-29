@@ -2,7 +2,6 @@
 import { render } from 'solid-js/web'
 import 'uno.css'
 import { HopeProvider } from '@hope-ui/solid'
-import './index.css'
 import App from './App'
 
 render(
