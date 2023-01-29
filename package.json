@@ -1,81 +1,28 @@
 {
   "name": "ide-reforged",
-  "version": "0.3.0",
-  "author": "Dustella",
-  "license": "AGPL-3.0",
+  "version": "0.0.0",
+  "description": "",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "wrangler pages dev --kv ranking -- vite",
     "build": "vite build",
-    "lint": "eslint src/**/*.{js,ts,vue}  --fix",
-    "lint:css": "stylelint src/**/*.{html,vue,css,sass,scss} --fix"
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.35.0",
+    "eslint": "^8.33.0",
+    "typescript": "^4.9.4",
+    "unocss": "^0.49.1",
+    "vite": "^4.0.4",
+    "vite-plugin-solid": "^2.5.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^0.26.3",
-    "@types/lodash-es": "*",
-    "@vitejs/plugin-vue": "^3.1.0",
-    "@volar/vue-language-service": "^0.40.13",
-    "axios": "^0.27.2",
-    "element-plus": "^2.2.16",
-    "postcss": "^8.3.3",
-    "postcss-html": ">=1.0.0 <2.0.0",
-    "stylelint": "^14.11.0",
-    "stylelint-config-recommended-vue": "^1.4.0",
-    "stylelint-config-standard": "^28.0.0",
-    "stylelint-config-standard-scss": "^5.0.0",
-    "unplugin-auto-import": "^0.11.2",
-    "unplugin-vue-components": "^0.22.7",
-    "vite": "^3.1.0",
-    "vite-plugin-vue": "^0.0.0",
-    "vue": "^3.2.39",
-    "vue3-video-play": "1.3.1-beta.6",
-    "vuex": "^4.0.2",
-    "yorkie": "^2.0.0"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.36.2",
-    "@typescript-eslint/parser": "^5.36.2",
-    "@vitejs/plugin-vue": "^2.2.2",
-    "@vue/compiler-sfc": "^3.2.39",
-    "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/eslint-config-typescript": "^11.0.1",
-    "eslint": "^8.23.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-vue": "^9.4.0",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "sass": "^1.54.9",
-    "typescript": "~4.8.3",
-    "vite": "^2.8.4",
-    "vue-tsc": "^0.40.13"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended",
-      "@vue/typescript/recommended",
-      "@vue/prettier",
-      "@vue/prettier/@typescript-eslint"
-    ],
-    "parserOptions": {
-      "ecmaVersion": "latest"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "git add"
-    ]
+    "@cloudflare/workers-types": "^4.20230115.0",
+    "@hope-ui/solid": "^0.6.7",
+    "@stitches/core": "^1.2.8",
+    "eslint-plugin-solid": "^0.9.4",
+    "solid-js": "^1.6.9",
+    "solid-transition-group": "^0.0.10",
+    "wrangler": "^2.8.1"
   }
 }
