@@ -1,4 +1,4 @@
-import type { KVNamespace, PagesFunction } from '@cloudflare/workers-types'
+import type { KVNamespace, PagesFunction } from "@cloudflare/workers-types"
 
 interface Env {
   ranking: KVNamespace
@@ -15,11 +15,14 @@ export const onRequestPut: PagesFunction<Env> = async (context) => {
   const id = await context.request.json().then((a: any) => a.id)
   const value = await context.env.ranking.get(`net${id}`)
   if (value) {
-    await context.env.ranking.put(`net${id}`, String(parseInt(value) + 1),
-      { metadata: String(parseInt(value) + 1) })
+    await context.env.ranking.put(`net${id}`, String(parseInt(value) + 1), {
+      metadata: String(parseInt(value) + 1),
+    })
+  } else {
+    await context.env.ranking.put(`net${id}`, String(1), {
+      metadata: String(1),
+    })
   }
-
-  else { await context.env.ranking.put(`net${id}`, String(1), { metadata: String(1) }) }
 
   return new Response(value)
 }

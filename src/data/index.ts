@@ -1,11 +1,10 @@
-import { createStore } from 'solid-js/store'
+import { createStore } from "solid-js/store"
 
 const [get, set] = createStore({
-  keyword: '',
+  keyword: "",
   selectedMusicIds: [] as string[],
   mediaPlay: {
     isPlaying: false,
-
   },
 })
 

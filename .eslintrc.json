@@ -1,5 +1,15 @@
 {
-"parser": "@typescript-eslint/parser",
-  "extends": ["@antfu","eslint:recommended", "plugin:solid/typescript","prettier"],
-  "plugins": ["solid"]
+  "parser": "@typescript-eslint/parser",
+  "extends": ["@antfu","eslint:recommended", "plugin:solid/typescript","prettier","plugin:prettier/recommended"],
+  "plugins": ["solid"],
+  "rules": {
+    "prettier/prettier": ["error",{
+      "max_line_length": 120,
+      "semi": false,
+      "proseWrap": "preserve",
+      "singleAttributePerLine": false
+    }],
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
+  }
 }
