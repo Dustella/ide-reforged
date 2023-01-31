@@ -11,7 +11,9 @@ export default () => {
     const keywordClone = keyword()
     return async (page: number) => {
       const ids = await fetch(
-        `/api/netease/search?keywords=${keywordClone}&page=${page}&limit=5`
+        `https://api-netease-music.dustella.net/search?keywords=${keywordClone}&offset=${
+          page * 5
+        }&limit=5`
       )
         .then((a) => a.json())
         .then(
@@ -23,7 +25,9 @@ export default () => {
             }
         )
       const resp = await fetch(
-        `/api/netease/song/detail?ids=${ids.songs.map((a) => a.id).join(",")}`
+        `https://api-netease-music.dustella.net/song/detail?ids=${ids.songs
+          .map((a) => a.id)
+          .join(",")}`
       )
         .then((a) => a.json())
         .then((a: any) => a.songs)
@@ -71,7 +75,7 @@ export default () => {
             </a>
           </h3>
 
-          <div class="flex flex-col">
+          <div class="flex flex-col items-center">
             <nav class="py-3" />
             <Switch>
               {/* begin search  */}
@@ -82,9 +86,6 @@ export default () => {
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered w-full mr-2"
-                    // onInput={(e) => {
-                    //   setKeyword(e.currentTarget.value)
-                    // }}
                   />
                   <button
                     class="btn btn-primary"
